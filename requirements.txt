@@ -1,0 +1,92 @@
+# requirements.txt
+pandas>=1.5.0
+selenium>=4.0.0
+webdriver-manager>=3.8.0
+pyautogui>=0.9.54
+pygetwindow>=0.0.9
+psutil>=5.9.0
+openpyxl>=3.0.10
+
+# For Windows desktop automation (optional)
+# pywin32>=228
+# pywinutils>=0.1.0
+
+# For advanced desktop automation (optional)  
+# opencv-python>=4.6.0
+# pillow>=8.0.0
+
+# setup.py
+from setuptools import setup, find_packages
+
+setup(
+    name="user-interaction-replicator",
+    version="1.0.0",
+    author="Your Name",
+    description="A tool to replicate user interactions from captured CSV data",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    packages=find_packages(),
+    install_requires=[
+        "pandas>=1.5.0",
+        "selenium>=4.0.0",
+        "webdriver-manager>=3.8.0",
+        "pyautogui>=0.9.54",
+        "pygetwindow>=0.0.9",
+        "psutil>=5.9.0",
+        "openpyxl>=3.0.10",
+    ],
+    extras_require={
+        "windows": ["pywin32>=228"],
+        "cv": ["opencv-python>=4.6.0", "pillow>=8.0.0"],
+    },
+    python_requires=">=3.8",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+    ],
+)
+
+# config.json - Configuration file template
+{
+    "selenium": {
+        "implicit_wait": 10,
+        "page_load_timeout": 30,
+        "script_timeout": 30,
+        "headless": false,
+        "browser_options": {
+            "chrome": [
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled"
+            ]
+        }
+    },
+    "desktop_automation": {
+        "screenshot_on_error": true,
+        "failsafe": true,
+        "pause": 0.1,
+        "confidence": 0.8
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "interaction_replication.log",
+        "format": "%(asctime)s - %(levelname)s - %(message)s"
+    },
+    "timing": {
+        "default_delay": 1.0,
+        "max_delay": 5.0,
+        "min_delay": 0.1,
+        "speed_multiplier": 1.0
+    },
+    "error_handling": {
+        "max_retries": 3,
+        "continue_on_error": true,
+        "screenshot_on_failure": true
+    }
+}
